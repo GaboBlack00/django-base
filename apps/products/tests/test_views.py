@@ -54,7 +54,7 @@ def test_product_detail(authenticated_client, user):
     category = Category.objects.create(name="Books")
     create_resp = authenticated_client.post("/api/v1/products/", {"name": "DetailTest", "price": "15", "category_id": category.id}, format="json")
     product_id = create_resp.json()["data"]["id"]
-    response = api_client = authenticated_client
+    response = authenticated_client
     resp = response.get(f"/api/v1/products/{product_id}/")
     assert resp.status_code == status.HTTP_200_OK
     assert resp.json()["data"]["name"] == "DetailTest"

@@ -1,7 +1,5 @@
 import pytest
 from django.core.exceptions import ValidationError
-from apps.accounts.models import User
-from apps.products.models import Category
 from apps.products.services import ProductService, CategoryService
 
 
