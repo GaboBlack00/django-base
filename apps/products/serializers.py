@@ -16,7 +16,14 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ["id", "name", "description", "product_count", "created_at", "updated_at"]
+        fields = [
+            "id",
+            "name",
+            "description",
+            "product_count",
+            "created_at",
+            "updated_at",
+        ]
         read_only_fields = ["id", "created_at", "updated_at"]
 
 
@@ -66,7 +73,13 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
-        read_only_fields = ["id", "created_by", "created_by_email", "created_at", "updated_at"]
+        read_only_fields = [
+            "id",
+            "created_by",
+            "created_by_email",
+            "created_at",
+            "updated_at",
+        ]
 
     def validate_price(self, value):
         """Ensure price is a positive value."""

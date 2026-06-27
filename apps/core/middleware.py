@@ -46,7 +46,10 @@ class IPWhitelistAdminMiddleware:
             client_ip = self._get_client_ip(request)
             if client_ip not in admin_ip_whitelist:
                 return JsonResponse(
-                    {"success": False, "error": {"code": "FORBIDDEN", "detail": "Access denied"}},
+                    {
+                        "success": False,
+                        "error": {"code": "FORBIDDEN", "detail": "Access denied"},
+                    },
                     status=403,
                 )
         return self.get_response(request)

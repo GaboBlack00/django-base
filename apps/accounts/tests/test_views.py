@@ -5,7 +5,11 @@ from apps.accounts.models import User
 
 @pytest.mark.django_db
 def test_register_view(api_client):
-    data = {"email": "test@example.com", "password": "securepass123", "password_confirm": "securepass123"}
+    data = {
+        "email": "test@example.com",
+        "password": "securepass123",
+        "password_confirm": "securepass123",
+    }
     response = api_client.post("/api/v1/accounts/register/", data, format="json")
     assert response.status_code == status.HTTP_201_CREATED
     assert response.json()["success"] is True
@@ -14,7 +18,11 @@ def test_register_view(api_client):
 @pytest.mark.django_db
 def test_register_duplicate_email(api_client):
     User.objects.create_user(email="dup@example.com", password="pass123")
-    data = {"email": "dup@example.com", "password": "TestPass123", "password_confirm": "TestPass123"}
+    data = {
+        "email": "dup@example.com",
+        "password": "TestPass123",
+        "password_confirm": "TestPass123",
+    }
     response = api_client.post("/api/v1/accounts/register/", data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert response.json()["success"] is False
@@ -22,7 +30,11 @@ def test_register_duplicate_email(api_client):
 
 @pytest.mark.django_db
 def test_register_password_mismatch(api_client):
-    data = {"email": "test@example.com", "password": "pass123", "password_confirm": "different"}
+    data = {
+        "email": "test@example.com",
+        "password": "pass123",
+        "password_confirm": "different",
+    }
     response = api_client.post("/api/v1/accounts/register/", data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert response.json()["success"] is False
@@ -56,9 +68,13 @@ def test_profile_view_authenticated(api_client):
 
 @pytest.mark.django_db
 def test_profile_update(api_client):
-    user = User.objects.create_user(email="update@example.com", password="securepass123")
+    user = User.objects.create_user(
+        email="update@example.com", password="securepass123"
+    )
     api_client.force_authenticate(user=user)
-    response = api_client.patch("/api/v1/accounts/me/", {"first_name": "John"}, format="json")
+    response = api_client.patch(
+        "/api/v1/accounts/me/", {"first_name": "John"}, format="json"
+    )
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["data"]["first_name"] == "John"
 
@@ -67,7 +83,11 @@ def test_profile_update(api_client):
 def test_change_password_happy_path(api_client):
     user = User.objects.create_user(email="changeme@example.com", password="oldpass123")
     api_client.force_authenticate(user=user)
-    response = api_client.post("/api/v1/accounts/change-password/", {"old_password": "oldpass123", "new_password": "Newpass123!"}, format="json")
+    response = api_client.post(
+        "/api/v1/accounts/change-password/",
+        {"old_password": "oldpass123", "new_password": "Newpass123!"},
+        format="json",
+    )
     assert response.status_code == status.HTTP_200_OK
     assert response.json()["success"] is True
     user.refresh_from_db()
@@ -78,5 +98,9 @@ def test_change_password_happy_path(api_client):
 def test_change_password_wrong_old(api_client):
     user = User.objects.create_user(email="wrongme@example.com", password="oldpass123")
     api_client.force_authenticate(user=user)
-    response = api_client.post("/api/v1/accounts/change-password/", {"old_password": "wrongpass", "new_password": "Newpass123!"}, format="json")
+    response = api_client.post(
+        "/api/v1/accounts/change-password/",
+        {"old_password": "wrongpass", "new_password": "Newpass123!"},
+        format="json",
+    )
     assert response.status_code == status.HTTP_400_BAD_REQUEST

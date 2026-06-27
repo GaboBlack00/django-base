@@ -1,5 +1,4 @@
-"""Product and Category domain models for the e-commerce module.
-"""
+"""Product and Category domain models for the e-commerce module."""
 
 from django.conf import settings
 from django.db import models
@@ -34,7 +33,9 @@ class Product(models.Model):
     name = models.CharField("name", max_length=200, unique=True)
     description = models.TextField("description", blank=True)
     price = models.DecimalField(
-        "price", max_digits=10, decimal_places=2,
+        "price",
+        max_digits=10,
+        decimal_places=2,
         help_text="Price must be greater than 0. Example: 19.99",
     )
     category = models.ForeignKey(

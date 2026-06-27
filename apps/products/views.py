@@ -44,7 +44,9 @@ class CategoryListCreateView(generics.ListCreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        return api_response(success=True, data=serializer.data, status_code=status.HTTP_201_CREATED)
+        return api_response(
+            success=True, data=serializer.data, status_code=status.HTTP_201_CREATED
+        )
 
 
 class CategoryDetailView(APIResponseMixin, generics.RetrieveUpdateDestroyAPIView):
@@ -61,7 +63,9 @@ class CategoryDetailView(APIResponseMixin, generics.RetrieveUpdateDestroyAPIView
     destroy_message = "Category deleted"
 
     def retrieve(self, request, *args, **kwargs) -> Response:
-        return api_response(success=True, data=self.get_serializer(self.get_object()).data)
+        return api_response(
+            success=True, data=self.get_serializer(self.get_object()).data
+        )
 
 
 class ProductListCreateView(generics.ListCreateAPIView):
@@ -104,7 +108,9 @@ class ProductListCreateView(generics.ListCreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        return api_response(success=True, data=serializer.data, status_code=status.HTTP_201_CREATED)
+        return api_response(
+            success=True, data=serializer.data, status_code=status.HTTP_201_CREATED
+        )
 
     def get_paginated_response(self, data):
         return api_response(success=True, data=data)

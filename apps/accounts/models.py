@@ -1,7 +1,10 @@
-"""Custom user model using email as the unique identifier instead of username.
-"""
+"""Custom user model using email as the unique identifier instead of username."""
 
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
 
 

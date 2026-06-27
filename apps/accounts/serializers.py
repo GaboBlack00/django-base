@@ -1,5 +1,4 @@
-"""DRF serializers for user registration, profile, and password change.
-"""
+"""DRF serializers for user registration, profile, and password change."""
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
@@ -33,7 +32,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         if attrs["password"] != attrs["password_confirm"]:
-            raise serializers.ValidationError({"password_confirm": "Passwords do not match"})
+            raise serializers.ValidationError(
+                {"password_confirm": "Passwords do not match"}
+            )
         return attrs
 
     def create(self, validated_data):

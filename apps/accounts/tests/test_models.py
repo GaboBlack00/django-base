@@ -12,7 +12,9 @@ def test_create_user():
 
 @pytest.mark.django_db
 def test_create_superuser():
-    user = User.objects.create_superuser(email="admin@example.com", password="adminpass123")
+    user = User.objects.create_superuser(
+        email="admin@example.com", password="adminpass123"
+    )
     assert user.is_staff
     assert user.is_superuser
 

@@ -1,5 +1,4 @@
-"""Custom DRF permissions for the products module.
-"""
+"""Custom DRF permissions for the products module."""
 
 from rest_framework import permissions
 

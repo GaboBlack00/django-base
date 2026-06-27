@@ -4,68 +4,80 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0001_initial'),
+        ("products", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
-            options={'ordering': ['name'], 'verbose_name': 'category', 'verbose_name_plural': 'categories'},
+            name="category",
+            options={
+                "ordering": ["name"],
+                "verbose_name": "category",
+                "verbose_name_plural": "categories",
+            },
         ),
         migrations.AlterModelOptions(
-            name='product',
-            options={'ordering': ['-created_at'], 'verbose_name': 'product', 'verbose_name_plural': 'products'},
+            name="product",
+            options={
+                "ordering": ["-created_at"],
+                "verbose_name": "product",
+                "verbose_name_plural": "products",
+            },
         ),
         migrations.AlterField(
-            model_name='category',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='created'),
+            model_name="category",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="created"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='description',
-            field=models.TextField(blank=True, verbose_name='description'),
+            model_name="category",
+            name="description",
+            field=models.TextField(blank=True, verbose_name="description"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='name',
-            field=models.CharField(max_length=100, unique=True, verbose_name='name'),
+            model_name="category",
+            name="name",
+            field=models.CharField(max_length=100, unique=True, verbose_name="name"),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='updated'),
+            model_name="category",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="updated"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='created'),
+            model_name="product",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="created"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='description',
-            field=models.TextField(blank=True, verbose_name='description'),
+            model_name="product",
+            name="description",
+            field=models.TextField(blank=True, verbose_name="description"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='is_active',
-            field=models.BooleanField(default=True, verbose_name='active'),
+            model_name="product",
+            name="is_active",
+            field=models.BooleanField(default=True, verbose_name="active"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='name',
-            field=models.CharField(max_length=200, unique=True, verbose_name='name'),
+            model_name="product",
+            name="name",
+            field=models.CharField(max_length=200, unique=True, verbose_name="name"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='price',
-            field=models.DecimalField(decimal_places=2, help_text='Price must be greater than 0. Example: 19.99', max_digits=10, verbose_name='price'),
+            model_name="product",
+            name="price",
+            field=models.DecimalField(
+                decimal_places=2,
+                help_text="Price must be greater than 0. Example: 19.99",
+                max_digits=10,
+                verbose_name="price",
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='updated'),
+            model_name="product",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="updated"),
         ),
     ]

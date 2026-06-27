@@ -25,4 +25,5 @@ LOGGING["root"]["level"] = "WARNING"
 SENTRY_DSN = os.environ.get("SENTRY_DSN")
 if SENTRY_DSN:
     import sentry_sdk
+
     sentry_sdk.init(dsn=SENTRY_DSN)

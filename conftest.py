@@ -19,6 +19,7 @@ def pytest_configure(config):
     logging.getLogger("django").setLevel(logging.CRITICAL)
 
     from django.conf import settings
+
     rates = settings.REST_FRAMEWORK.get("DEFAULT_THROTTLE_RATES", {})
     for scope in rates:
         rates[scope] = "10000/m"
@@ -39,7 +40,9 @@ def user(db):
 @pytest.fixture
 def admin_user(db):
     """Create and return a superuser with staff privileges."""
-    return User.objects.create_superuser(email="admin@example.com", password="adminpass123")
+    return User.objects.create_superuser(
+        email="admin@example.com", password="adminpass123"
+    )
 
 
 @pytest.fixture
@@ -52,6 +55,8 @@ def authenticated_client(api_client, user):
 @pytest.fixture
 def user_factory(db):
     """Factory fixture that creates users with arbitrary email addresses."""
+
     def factory(email, **kwargs):
         return User.objects.create_user(email=email, **kwargs)
+
     return factory

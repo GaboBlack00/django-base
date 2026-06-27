@@ -1,5 +1,4 @@
-"""Django admin configuration for products and categories.
-"""
+"""Django admin configuration for products and categories."""
 
 from django.contrib import admin
 from .models import Category, Product
@@ -18,7 +17,14 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     """Admin interface for managing products with inline creator assignment."""
 
-    list_display = ["name", "price", "category", "is_active", "created_by", "created_at"]
+    list_display = [
+        "name",
+        "price",
+        "category",
+        "is_active",
+        "created_by",
+        "created_at",
+    ]
     list_filter = ["is_active", "category"]
     search_fields = ["name", "description"]
     ordering = ["-created_at"]

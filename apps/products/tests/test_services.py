@@ -23,5 +23,7 @@ def test_create_product_negative_price(user):
 
 @pytest.mark.django_db
 def test_create_category_service():
-    category = CategoryService.create_category(name="Books", description="All kinds of books")
+    category = CategoryService.create_category(
+        name="Books", description="All kinds of books"
+    )
     assert category.name == "Books"

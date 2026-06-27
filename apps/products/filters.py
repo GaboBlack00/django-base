@@ -1,5 +1,4 @@
-"""Django-filter ``FilterSet`` definitions for the products module.
-"""
+"""Django-filter ``FilterSet`` definitions for the products module."""
 
 import django_filters
 from django.db import models

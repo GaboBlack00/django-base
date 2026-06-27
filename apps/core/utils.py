@@ -1,5 +1,4 @@
-"""Utility classes, primarily for logging and data sanitisation.
-"""
+"""Utility classes, primarily for logging and data sanitisation."""
 
 import logging
 import re
@@ -13,7 +12,12 @@ class SensitiveDataFilter(logging.Filter):
     """
 
     SENSITIVE_PATTERNS: list = [
-        (re.compile(r"(password|token|secret|key)[\"']?\s*[:=]\s*[\"']?([^\"'\\s,]+)", re.I), r"\1=***"),
+        (
+            re.compile(
+                r"(password|token|secret|key)[\"']?\s*[:=]\s*[\"']?([^\"'\\s,]+)", re.I
+            ),
+            r"\1=***",
+        ),
     ]
 
     def filter(self, record: logging.LogRecord) -> bool:

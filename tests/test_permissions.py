@@ -18,8 +18,14 @@ def test_is_admin_user_permission(api_client, user, admin_user):
 
 @pytest.mark.django_db
 def test_user_inactive_cannot_login(api_client):
-    User.objects.create_user(email="inactive@example.com", password="pass123", is_active=False)
-    response = api_client.post("/api/v1/accounts/login/", {"email": "inactive@example.com", "password": "pass123"}, format="json")
+    User.objects.create_user(
+        email="inactive@example.com", password="pass123", is_active=False
+    )
+    response = api_client.post(
+        "/api/v1/accounts/login/",
+        {"email": "inactive@example.com", "password": "pass123"},
+        format="json",
+    )
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
 
@@ -34,5 +40,9 @@ def test_unauthenticated_cannot_access_protected_endpoints(api_client):
 
 @pytest.mark.django_db
 def test_change_password_requires_authentication(api_client):
-    response = api_client.post("/api/v1/accounts/change-password/", {"old_password": "old", "new_password": "new"}, format="json")
+    response = api_client.post(
+        "/api/v1/accounts/change-password/",
+        {"old_password": "old", "new_password": "new"},
+        format="json",
+    )
     assert response.status_code == status.HTTP_401_UNAUTHORIZED

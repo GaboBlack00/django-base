@@ -6,7 +6,9 @@ from apps.accounts.services import UserService
 
 @pytest.mark.django_db
 def test_create_user_service():
-    user = UserService.create_user(email="test@example.com", password="securepass123", first_name="John")
+    user = UserService.create_user(
+        email="test@example.com", password="securepass123", first_name="John"
+    )
     assert user.email == "test@example.com"
     assert user.first_name == "John"
 

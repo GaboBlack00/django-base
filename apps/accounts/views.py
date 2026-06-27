@@ -1,5 +1,4 @@
-"""API views for user authentication, profile management, and JWT handling.
-"""
+"""API views for user authentication, profile management, and JWT handling."""
 
 from django.contrib.auth import get_user_model
 from rest_framework import generics, status
@@ -11,7 +10,11 @@ from apps.core.mixins import APIResponseMixin
 from apps.core.response import api_response
 from apps.core.throttles import LoginRateThrottle
 
-from .serializers import ChangePasswordSerializer, UserRegistrationSerializer, UserSerializer
+from .serializers import (
+    ChangePasswordSerializer,
+    UserRegistrationSerializer,
+    UserSerializer,
+)
 
 User = get_user_model()
 
@@ -110,4 +113,6 @@ class ChangePasswordView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         request.user.set_password(serializer.validated_data["new_password"])
         request.user.save()
-        return api_response(success=True, data={"message": "Password changed successfully"})
+        return api_response(
+            success=True, data={"message": "Password changed successfully"}
+        )

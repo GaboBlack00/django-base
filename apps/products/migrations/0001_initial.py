@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,39 +14,104 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True, verbose_name='nombre')),
-                ('description', models.TextField(blank=True, verbose_name='descripción')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='creado')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='actualizado')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100, unique=True, verbose_name="nombre"
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(blank=True, verbose_name="descripción"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="creado"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="actualizado"),
+                ),
             ],
             options={
-                'verbose_name': 'categoría',
-                'verbose_name_plural': 'categorías',
-                'db_table': 'categories',
-                'ordering': ['name'],
+                "verbose_name": "categoría",
+                "verbose_name_plural": "categorías",
+                "db_table": "categories",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, unique=True, verbose_name='nombre')),
-                ('description', models.TextField(blank=True, verbose_name='descripción')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='precio')),
-                ('is_active', models.BooleanField(default=True, verbose_name='activo')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='creado')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='actualizado')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='products', to='products.category')),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=200, unique=True, verbose_name="nombre"
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(blank=True, verbose_name="descripción"),
+                ),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=10, verbose_name="precio"
+                    ),
+                ),
+                ("is_active", models.BooleanField(default=True, verbose_name="activo")),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="creado"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="actualizado"),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="products",
+                        to="products.category",
+                    ),
+                ),
+                (
+                    "created_by",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="products",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'producto',
-                'verbose_name_plural': 'productos',
-                'db_table': 'products',
-                'ordering': ['-created_at'],
+                "verbose_name": "producto",
+                "verbose_name_plural": "productos",
+                "db_table": "products",
+                "ordering": ["-created_at"],
             },
         ),
     ]

@@ -7,7 +7,9 @@ All views should use ``api_response()`` to maintain a consistent
 from rest_framework.response import Response
 
 
-def api_response(success: bool = True, data=None, error=None, status_code: int = 200) -> Response:
+def api_response(
+    success: bool = True, data=None, error=None, status_code: int = 200
+) -> Response:
     """Build a standardised JSON response.
 
     Args:

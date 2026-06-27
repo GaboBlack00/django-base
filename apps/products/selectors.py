@@ -67,6 +67,8 @@ def get_product_by_id(product_id: int) -> Product | None:
         The matching ``Product`` instance with ``category`` and
         ``created_by`` prefetched, or ``None``.
     """
-    return Product.objects.select_related("category", "created_by").filter(
-        id=product_id
-    ).first()
+    return (
+        Product.objects.select_related("category", "created_by")
+        .filter(id=product_id)
+        .first()
+    )
