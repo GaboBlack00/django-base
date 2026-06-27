@@ -1,0 +1,11 @@
+Django>=5.0
+djangorestframework
+djangorestframework-simplejwt
+drf-spectacular
+django-cors-headers
+django-filter
+whitenoise
+django-environ
+psycopg2
+gunicorn
+sentry-sdk>=2.0
